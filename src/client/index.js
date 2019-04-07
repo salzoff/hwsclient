@@ -19,7 +19,6 @@ import {
     PackageOfferResponse,
     HotelOfferResponse
 } from '../classes/response';
-import axios from 'axios';
 
 const requestClasses = {
     package: {
@@ -57,9 +56,7 @@ export default class HwsClient {
     constructor(config) {
         this.url = config.url;
         this.defaultAuthKey = config.defaultAuthKey;
-        this.http = axios.create({
-            baseURL: config.url
-        });
+        this.http = config.http;
     }
 
     requestFormData(params) {

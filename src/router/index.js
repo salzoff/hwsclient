@@ -3,7 +3,15 @@ import HwsClient from '../client';
 import bodyParser from 'body-parser';
 import config from '../../config';
 const router = express.Router();
-const hwsClient = new HwsClient(config);
+import axios from 'axios';
+
+const hwsClient = new HwsClient({
+    url: config.url,
+    defaultAuthKey: config.defaultAuthKey,
+    http: axios.create({
+        baseURL: config.url
+    })
+});
 
 router.use(bodyParser.json());
 

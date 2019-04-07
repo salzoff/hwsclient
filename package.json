@@ -2,7 +2,7 @@
   "name": "hwsclient",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/client.js",
   "files": [
     "dist",
     "src"
@@ -28,6 +28,7 @@
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "babel-loader": "^8.0.5",
     "babel-preset-env": "^1.7.0",
     "dotenv": "^7.0.0",
     "webpack": "^4.29.6",
