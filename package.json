@@ -1,5 +1,5 @@
 {
-  "name": "hwsclient",
+  "name": "@salzoff/hwsclient",
   "version": "0.0.1",
   "description": "",
   "main": "dist/client.js",
