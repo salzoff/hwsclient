@@ -1,9 +1,7 @@
-import { createProxy } from '../ResponseProxy';
-
 export default class BaseResponse {
     constructor() {
-        this['Success'] = null;
-        this['Lang'] = null;
+        this['Success'];
+        this['Lang'];
     }
 
     set success(success) {
@@ -33,17 +31,6 @@ export default class BaseResponse {
                 return this.lang;
             }
         };
-    }
-
-    getProxy() {
-        return createProxy(this, {
-            get(target, name) {
-                if (target[name] === null && target.rawGetters()[name]) {
-                    return target.rawGetters()[name].call(target);
-                }
-                return target[name];
-            }
-        });
     }
 
     parseRawResponse() {

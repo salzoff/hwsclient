@@ -10,6 +10,15 @@ import {
     HotelVariantRequest,
     PackageFlightAlternativeRequest
 } from '../classes/request';
+import {
+    FormDataResponse,
+    PackageGroupResponse,
+    HotelGroupResponse,
+    PackageProductResponse,
+    HotelProductResponse,
+    PackageOfferResponse,
+    HotelOfferResponse
+} from '../classes/response';
 import axios from 'axios';
 
 const requestClasses = {
@@ -28,9 +37,24 @@ const requestClasses = {
     }
 };
 
+const responseClasses = {
+    package: {
+        group: PackageGroupResponse,
+        product: PackageProductResponse,
+        offer: PackageOfferResponse,
+        variant: PackageOfferResponse,
+        flightalternatives: PackageOfferResponse
+    },
+    hotel: {
+        group: HotelGroupResponse,
+        product: HotelProductResponse,
+        offer: HotelOfferResponse,
+        variant: HotelOfferResponse
+    }
+};
+
 export default class HwsClient {
     constructor(config) {
-        console.log(config);
         this.url = config.url;
         this.defaultAuthKey = config.defaultAuthKey;
         this.http = axios.create({
@@ -44,7 +68,7 @@ export default class HwsClient {
         }
         const request = FormDataRequest.fromParams(params);
         return this.http.post(request.path, request).then(response => {
-            return response.data;
+            return FormDataResponse.fromRawResponse(response.data);
         });
     }
 
@@ -54,7 +78,7 @@ export default class HwsClient {
         }
         const request = this.getRequestClass(requesttype, 'group').fromParams(params);
         return this.http.post(request.path, request).then(response => {
-            return response.data;
+            return this.getResponseClass(requesttype, 'group').fromRawResponse(response.data);
         });
     }
 
@@ -64,7 +88,7 @@ export default class HwsClient {
         }
         const request = this.getRequestClass(requesttype, 'product').fromParams(params);
         return this.http.post(request.path, request).then(response => {
-            return response.data;
+            return this.getResponseClass(requesttype, 'product').fromRawResponse(response.data);
         });
     }
 
@@ -74,7 +98,7 @@ export default class HwsClient {
         }
         const request = this.getRequestClass(requesttype, 'offer').fromParams(params);
         return this.http.post(request.path, request).then(response => {
-            return response.data;
+            return this.getResponseClass(requesttype, 'offer').fromRawResponse(response.data);
         });
     }
 
@@ -90,5 +114,9 @@ export default class HwsClient {
 
     getRequestClass(requesttype, request) {
         return requestClasses[requesttype][request];
+    }
+
+    getResponseClass(requesttype, request) {
+        return responseClasses[requesttype][request];
     }
 };
