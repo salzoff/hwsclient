@@ -1,5 +1,5 @@
 export default {
-    port: 7070,
+    port: process.env.hwsPort,
     url: process.env.url,
     defaultAuthKey: process.env.defaultAuthKey
 };

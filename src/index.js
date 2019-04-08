@@ -9,6 +9,6 @@ const app = express();
 app.use(cors());
 app.use('/', router);
 
-app.listen(config.port, () => {
+app.listen(config.hwsPort, () => {
     console.log(`HwsClient listening on port ${config.port}`);
 });
