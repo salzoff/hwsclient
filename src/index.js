@@ -1,14 +1,9 @@
-import 'dotenv/config';
-import express from 'express';
-import cors from 'cors';
-import config from '../config';
-import router from './router';
+import client from './client/index';
+import * as req from './classes/request/index';
+import * as res from './classes/response/index';
 
-const app = express();
-
-app.use(cors());
-app.use('/', router);
-
-app.listen(config.hwsPort, () => {
-    console.log(`HwsClient listening on port ${config.port}`);
-});
+export {
+    client,
+    req,
+    res
+};

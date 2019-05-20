@@ -1,9 +1,9 @@
 {
   "name": "@salzoff/hwsclient",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
-  "main": "dist/client.js",
-  "module": "dist/client.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "files": [
     "dist",
     "src",
