@@ -10,7 +10,11 @@ module.exports = {
     target: 'node',
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        library: '[name]',
+        libraryExport: 'default',
+        libraryTarget: 'umd',
+        globalObject: 'typeof self !== \'undefined\' ? self : this'
     },
     module: {
         rules: [
