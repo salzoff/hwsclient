@@ -8,8 +8,6 @@ export default class BaseRequest {
         });
     }
 
-    static hubVersion = null;
-
     static setHubVersion(hubVersion) {
         BaseRequest.hubVersion = hubVersion;
     }
